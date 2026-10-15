@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aroma & Leña | Café </title>
+  
+  <!-- Fuentes externas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de estilos vinculada -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado superior -->
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="#inicio">Aroma & Leña</a>
+      <nav>
+        <a class="btn ghost small" href="#menu" style="text-decoration:none">Menú</a>
+        <a class="btn ghost small" href="#cuenta" style="text-decoration:none">Mis datos</a>
+        <button class="btn small" id="openCart" aria-label="Abrir carrito">
+          Carrito<span class="badge" id="count">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección Hero -->
+  <div class="hero" id="inicio">
+    <div class="wrap">
+      <h1>Calidez en la taza, Tradicion en el plato.</h1>
+      <p>Cafe de altura, especial para acompañar tu día, pidelo para llevar o consumir con nosotros acompañado de un buen postre.</p>
+      <a class="btn" href="#menu" style="text-decoration:none;display:inline-block">Ver el menú</a>
+      <div class="info">
+        <span>Abierto de 11:00am a 08:00pm </span>
+        <span> Av. Principal Barrio el Chile, Chalatenango Sur</span>
+        <span>Pago en efectivo o tarjeta</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección Menú -->
+  <section id="menu">
+    <div class="wrap">
+      <h2>Menú</h2>
+      <div class="tools">
+        <input id="q" type="search" placeholder="Buscar platillo" aria-label="Buscar platillo">
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- Sección Datos del Usuario e Historial -->
+  <section id="cuenta" style="padding-top:0">
+    <div class="wrap">
+      <h2>Mis datos y pedidos</h2>
+      <div class="panel">
+        <p style="margin-top:0;color:var(--muted)">Guarda tus datos en este dispositivo para pedir más rápido. Se usan solo para tus entregas.</p>
+        <form id="profile" novalidate>
+          <div class="two">
+            <div class="f">
+              <label for="pName">Nombre completo</label>
+              <input id="pName" autocomplete="name">
+              <span class="err-t" data-for="pName"></span>
+            </div>
+            <div class="f">
+              <label for="pPhone">Teléfono</label>
+              <input id="pPhone" inputmode="tel" autocomplete="tel" placeholder="7000-0000">
+              <span class="err-t" data-for="pPhone"></span>
+            </div>
+          </div>
+          <div class="f">
+            <label for="pEmail">Correo electrónico</label>
+            <input id="pEmail" type="email" autocomplete="email">
+            <span class="err-t" data-for="pEmail"></span>
+          </div>
+          <div class="f">
+            <label for="pAddr">Dirección de entrega</label>
+            <textarea id="pAddr" rows="2" autocomplete="street-address"></textarea>
+          </div>
+          <label class="f check">
+            <input type="checkbox" id="pConsent">
+            <span>Acepto que La Brasa Dorada guarde mis datos para gestionar mis pedidos.</span>
+          </label>
+          <span class="err-t" data-for="pConsent"></span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn" type="submit">Guardar mis datos</button>
+            <button class="btn ghost" type="button" id="wipe" style="color:var(--ink)">Borrar mis datos</button>
+          </div>
+          <p class="msg" id="pMsg" role="status"></p>
+        </form>
+
+        <h3 style="margin-top:20px">Historial de pedidos</h3>
+        <div class="orders" id="orders"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer>
+    <div class="wrap">La Brasa Dorada es un restaurante ficticio creado con fines académicos. Los pagos son simulados.</div>
+  </footer>
+
+  <!-- Drawer y Overlay del Carrito -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Carrito de compras" aria-hidden="true">
+    <header>
+      <h2 id="dTitle">Tu pedido</h2>
+      <button class="btn ghost small" id="closeCart" style="color:var(--ink)">Cerrar</button>
+    </header>
+    <div class="content" id="cartView"></div>
+    <div class="totals" id="totalsBox"></div>
+  </aside>
+
+  <!-- Notificación flotante (Toast) -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Lógica JavaScript vinculada -->
+  <script src="app.js"></script>
+</body>
+</html>

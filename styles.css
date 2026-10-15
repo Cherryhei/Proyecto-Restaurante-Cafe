@@ -1,0 +1,512 @@
+:root {
+  --bg: #000000;
+  --surface: #fff;
+  --ink: #14231D;
+  --muted: #5d6b64;
+  --line: #d9ddd5;
+  --gold: #E0A100;
+  --gold-ink: #14231D;
+  --deep: #14231D;
+  --deep-ink: #F3F4EF;
+  --ok: #1d7a4d;
+  --err: #b3261e;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1814;
+    --surface: #16251f;
+    --ink: #eef0ea;
+    --muted: #9fb0a7;
+    --line: #27382f;
+    --deep: #0a120f;
+    --ok: #4fc88a;
+    --err: #ff8a80;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1814;
+  --surface: #16251f;
+  --ink: #eef0ea;
+  --muted: #9fb0a7;
+  --line: #27382f;
+  --deep: #0a120f;
+  --ok: #4fc88a;
+  --err: #ff8a80;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.55 Figtree, system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  line-height: 1.1;
+  margin: 0;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--deep);
+  color: var(--deep-ink);
+}
+
+header.top .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  gap: 12px;
+}
+
+.logo {
+  font: 800 1.25rem 'Bricolage Grotesque', Georgia, serif;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--gold);
+  color: var(--gold-ink);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: inherit;
+  border: 1.5px solid currentColor;
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: .9rem;
+}
+
+.btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.badge {
+  background: var(--deep-ink);
+  color: var(--deep);
+  border-radius: 99px;
+  padding: 0 8px;
+  margin-left: 6px;
+  font-size: .85rem;
+}
+
+.hero {
+  background: var(--deep);
+  color: var(--deep-ink);
+  padding: 56px 0 64px;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  max-width: 12ch;
+}
+
+.hero p {
+  max-width: 46ch;
+  color: #c9d3cc;
+  margin: 18px 0 26px;
+  font-size: 1.1rem;
+}
+
+.hero .info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 28px;
+  color: #aebcb4;
+  font-size: .95rem;
+}
+
+section {
+  padding: 44px 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tools input {
+  flex: 1 1 220px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  border-radius: 99px;
+  padding: 7px 14px;
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--deep);
+  color: var(--deep-ink);
+  border-color: var(--deep);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.dish {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dish .pic {
+  height: 92px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+  font: 800 2.2rem 'Bricolage Grotesque', Georgia, serif;
+  color: rgba(255, 255, 255, .9);
+}
+
+.dish .body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.dish h3 {
+  font-size: 1.2rem;
+}
+
+.dish p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .93rem;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: .78rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1px 7px;
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.price {
+  font: 700 1.2rem 'Bricolage Grotesque', Georgia, serif;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 20px 0;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 40;
+  display: none;
+}
+
+.overlay.open {
+  display: block;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  background: var(--bg);
+  z-index: 50;
+  transform: translateX(100%);
+  transition: transform .25s;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.drawer.open {
+  transform: none;
+}
+
+.drawer header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.drawer .content {
+  flex: 1;
+  overflow: auto;
+  padding: 16px 20px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty button {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.item input {
+  grid-column: 1/-1;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: .9rem;
+}
+
+.totals {
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.totals div {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+
+.totals .total {
+  font: 800 1.3rem 'Bricolage Grotesque', Georgia, serif;
+  margin-top: 6px;
+}
+
+.coupon {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.coupon input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.msg {
+  font-size: .9rem;
+  min-height: 1.3em;
+}
+
+.msg.ok {
+  color: var(--ok);
+}
+
+.msg.err {
+  color: var(--err);
+}
+
+form .f {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+form label {
+  font-weight: 600;
+  font-size: .93rem;
+}
+
+form input, form select, form textarea {
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  width: 100%;
+}
+
+form .two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media(max-width:520px) {
+  form .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.err-t {
+  color: var(--err);
+  font-size: .85rem;
+  min-height: 1.1em;
+}
+
+.check {
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 8px !important;
+}
+
+.check input {
+  width: auto;
+  margin-top: 5px;
+}
+
+.orders {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.order {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-top, 0px));
+  transform: translateX(-50%);
+  background: var(--deep);
+  color: var(--deep-ink);
+  padding: 10px 18px;
+  border-radius: 10px;
+  z-index: 60;
+  display: none;
+}
+
+footer {
+  background: var(--deep);
+  color: #aebcb4;
+  padding: 28px 0;
+  font-size: .9rem;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
