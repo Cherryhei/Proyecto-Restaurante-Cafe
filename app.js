@@ -330,6 +330,122 @@ function renderOrders() {
     </div>`).join('') : '<p class="empty">Aún no has hecho pedidos. Cuando pidas, aparecerán aquí.</p>';
 }
 
+/* LÓGICA DE MODAL DE LOGIN / REGISTRO / ADMIN */
+let currentUser = store.get('bd_user', null);
+
+const authModal = $('#authModal');
+const openAuthBtn = $('#openAuth');
+const closeAuthBtn = $('#closeAuth');
+const tabLogin = $('#tabLogin');
+const tabRegister = $('#tabRegister');
+const formLogin = $('#formLogin');
+const formRegister = $('#formRegister');
+const adminSection = $('#adminSection');
+
+// Abrir y cerrar Modal
+openAuthBtn.onclick = () => {
+  if (currentUser) {
+    // Si ya está logueado, al tocar el botón se cierra sesión
+    currentUser = null;
+    store.del('bd_user');
+    updateUserUI();
+    toast('Sesión cerrada');
+  } else {
+    authModal.classList.add('open');
+    authModal.setAttribute('aria-hidden', 'false');
+  }
+};
+
+closeAuthBtn.onclick = () => {
+  authModal.classList.remove('open');
+  authModal.setAttribute('aria-hidden', 'true');
+};
+
+// Cambiar entre pestañas Login y Registro
+tabLogin.onclick = () => {
+  tabLogin.classList.add('active');
+  tabRegister.classList.remove('active');
+  formLogin.style.display = 'block';
+  formRegister.style.display = 'none';
+};
+
+tabRegister.onclick = () => {
+  tabRegister.classList.add('active');
+  tabLogin.classList.remove('active');
+  formRegister.style.display = 'block';
+  formLogin.style.display = 'none';
+};
+
+// Simular Login
+formLogin.onsubmit = e => {
+  e.preventDefault();
+  const role = $('#lRole').value;
+  const email = $('#lEmail').value.trim();
+  
+  currentUser = { email, role };
+  store.set('bd_user', currentUser);
+  
+  authModal.classList.remove('open');
+  updateUserUI();
+  toast(`Bienvenido (${role === 'admin' ? 'Administrador' : 'Cliente'})`);
+};
+
+// Simular Registro
+formRegister.onsubmit = e => {
+  e.preventDefault();
+  const name = $('#rName').value.trim();
+  const role = $('#rRole').value;
+  const email = $('#rEmail').value.trim();
+
+  currentUser = { name, email, role };
+  store.set('bd_user', currentUser);
+
+  authModal.classList.remove('open');
+  updateUserUI();
+  toast('Cuenta creada exitosamente');
+};
+
+// Actualizar la interfaz según el rol
+function updateUserUI() {
+  if (currentUser) {
+    openAuthBtn.textContent = `Salir (${currentUser.role})`;
+    if (currentUser.role === 'admin') {
+      adminSection.style.display = 'block';
+    } else {
+      adminSection.style.display = 'none';
+    }
+  } else {
+    openAuthBtn.textContent = 'Ingresar';
+    adminSection.style.display = 'none';
+  }
+}
+
+// Lógica para que el Administrador agregue productos dinámicamente al menú
+$('#formAddDish').onsubmit = e => {
+  e.preventDefault();
+  
+  const newDish = {
+    id: Date.now(),
+    n: $('#adminName').value.trim(),
+    c: $('#adminCat').value,
+    p: parseFloat($('#adminPrice').value),
+    d: $('#adminDesc').value.trim(),
+    t: $('#adminTag').value ? [$('#adminTag').value] : [],
+    img: $('#adminImg').value.trim() || 'imagenes/horchata.jpg'
+  };
+
+  MENU.unshift(newDish);
+  renderChips();
+  renderMenu();
+  $('#formAddDish').reset();
+  toast('¡Nuevo platillo agregado al menú!');
+};
+
+// Inicializar estado de usuario al cargar
+updateUserUI();
+
+
+
 /* INICIALIZACIÓN */
 renderChips();
 renderMenu();

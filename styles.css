@@ -736,3 +736,78 @@ footer { background: #241b16; color: #d0beaa; padding: 35px 0; }
   object-fit: cover;
   display: block;
 }
+
+/* MODAL DE AUTENTICACIÓN (LOGIN & REGISTRO) */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 14, 9, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.auth-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.auth-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  width: min(420px, 90vw);
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.auth-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.auth-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab.active {
+  color: var(--gold-ink);
+  border-bottom-color: var(--gold);
+}
+
+/* USUARIO LOGUEADO BADGE */
+.user-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--gold);
+  color: var(--gold-ink);
+  padding: 4px 10px;
+  border-radius: 8px;
+}
