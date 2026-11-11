@@ -1,19 +1,19 @@
 /* BASE DE DATOS Y CONSTANTES */
 const MENU = [
-  { id: 1, n: 'Entrada de yuca frita', c: 'Entradas', p: 3.5, d: 'Yuca dorada con chicharrón y curtido.', t: ['popular'], k: '#8a6d1d' },
-  { id: 2, n: 'Pupusas revueltas (3)', c: 'Entradas', p: 3.75, d: 'Queso, frijol y chicharrón con salsa y curtido.', t: ['popular'], k: '#9b5a2c' },
-  { id: 3, n: 'Ensalada de la casa', c: 'Entradas', p: 4.25, d: 'Hojas verdes, aguacate, tomate y vinagreta de limón.', t: ['vegetariano'], k: '#2f6b4a' },
-  { id: 4, n: 'Costillas a la brasa', c: 'Platos fuertes', p: 12.9, d: 'Media tabla glaseada, con papas y ensalada.', t: ['popular'], k: '#7a2e22' },
-  { id: 5, n: 'Pollo dorado', c: 'Platos fuertes', p: 9.5, d: 'Cuarto de pollo en leña, arroz y frijoles.', t: [], k: '#a8741a' },
-  { id: 6, n: 'Churrasco con chimichurri', c: 'Platos fuertes', p: 14.5, d: '300 g de res, guarnición a elegir.', t: [], k: '#5e2a24' },
-  { id: 7, n: 'Chile relleno al horno', c: 'Platos fuertes', p: 8.25, d: 'Relleno de queso y verduras, salsa de tomate.', t: ['vegetariano', 'picante'], k: '#3e6b32' },
-  { id: 8, n: 'Camarones al ajillo', c: 'Platos fuertes', p: 13.75, d: 'Con ajo, mantequilla y un toque de chile.', t: ['picante'], k: '#b4541f' },
-  { id: 9, n: 'Limonada con hierbabuena', c: 'Bebidas', p: 2.25, d: 'Hecha al momento, con poca azúcar.', t: ['vegetariano'], k: '#5c8a2e' },
-  { id: 10, n: 'Horchata', c: 'Bebidas', p: 2.0, d: 'Semilla de morro con canela.', t: ['vegetariano'], k: '#8c7a5a' },
-  { id: 11, n: 'Café de altura', c: 'Bebidas', p: 1.75, d: 'Tostado local, servido caliente.', t: ['vegetariano'], k: '#4a3326' },
-  { id: 12, n: 'Quesadilla salvadoreña', c: 'Postres', p: 3.25, d: 'Una rebanada tibia con café.', t: ['vegetariano', 'popular'], k: '#b88a2a' },
-  { id: 13, n: 'Plátanos en gloria', c: 'Postres', p: 3.0, d: 'Plátano maduro con crema y canela.', t: ['vegetariano'], k: '#8a4a2a' },
-  { id: 14, n: 'Combo Familiar', c: 'Combos', p: 29.9, d: 'Pollo, costillas, 4 guarniciones y 4 bebidas.', t: ['popular'], k: '#14231D' }
+  { id: 1, n: 'Entrada de yuca frita', c: 'Entradas', p: 3.5, d: 'Yuca dorada con chicharrón y curtido.', t: ['popular'], img: 'imagenes/menu/yuca-frita.jpg' },
+  { id: 2, n: 'Pupusas revueltas (3)', c: 'Entradas', p: 3.75, d: 'Queso, frijol y chicharrón con salsa y curtido.', t: ['popular'], img: 'imagenes/menu/pupusas.jpg' },
+  { id: 3, n: 'Ensalada de la casa', c: 'Entradas', p: 4.25, d: 'Hojas verdes, aguacate, tomate y vinagreta de limón.', t: ['vegetariano'], img: 'imagenes/menu/ensalada.jpg' },
+  { id: 4, n: 'Costillas a la brasa', c: 'Platos fuertes', p: 12.9, d: 'Media tabla glaseada, con papas y ensalada.', t: ['popular'], img: 'imagenes/menu/costillas.jpg' },
+  { id: 5, n: 'Pollo dorado', c: 'Platos fuertes', p: 9.5, d: 'Cuarto de pollo en leña, arroz y frijoles.', t: [], img: 'imagenes/menu/pollo-dorado.jpg' },
+  { id: 6, n: 'Churrasco con chimichurri', c: 'Platos fuertes', p: 14.5, d: '300 g de res, guarnición a elegir.', t: [], img: 'imagenes/menu/churrasco.jpg' },
+  { id: 7, n: 'Chile relleno al horno', c: 'Platos fuertes', p: 8.25, d: 'Relleno de queso y verduras, salsa de tomate.', t: ['vegetariano', 'picante'], img: 'imagenes/menu/chile-relleno.jpg' },
+  { id: 8, n: 'Camarones al ajillo', c: 'Platos fuertes', p: 13.75, d: 'Con ajo, mantequilla y un toque de chile.', t: ['picante'], img: 'imagenes/menu/camarones.jpg' },
+  { id: 9, n: 'Limonada con hierbabuena', c: 'Bebidas', p: 2.25, d: 'Hecha al momento, con poca azúcar.', t: ['vegetariano'], img: 'imagenes/menu/limonada.jpg' },
+  { id: 10, n: 'Horchata', c: 'Bebidas', p: 2.0, d: 'Semilla de morro con canela.', t: ['vegetariano'], img: 'imagenes/menu/horchata.jpg' },
+  { id: 11, n: 'Café de altura', c: 'Bebidas', p: 1.75, d: 'Tostado local, servido caliente.', t: ['vegetariano'], img: 'imagenes/menu/cafe.jpg' },
+  { id: 12, n: 'Quesadilla salvadoreña', c: 'Postres', p: 3.25, d: 'Una rebanada tibia con café.', t: ['vegetariano', 'popular'], img: 'imagenes/menu/quesadilla.jpg' },
+  { id: 13, n: 'Plátanos en gloria', c: 'Postres', p: 3.0, d: 'Plátano maduro con crema y canela.', t: ['vegetariano'], img: 'imagenes/menu/platanos.jpg' },
+  { id: 14, n: 'Combo Familiar', c: 'Combos', p: 29.9, d: 'Pollo, costillas, 4 guarniciones y 4 bebidas.', t: ['popular'], img: 'imagenes/menu/combo-familiar.jpg' }
 ];
 
 const TAX = .13;
@@ -58,11 +58,11 @@ function renderMenu() {
   
   $('#grid').innerHTML = list.length ? list.map(m => `
     <article class="dish">
-      <div class="pic" style="background:${m.k}">${m.n[0]}</div>
+      <img src="${m.img}" alt="${esc(m.n)}" class="dish-img">
       <div class="body">
-        <h3>${m.n}</h3>
-        <p>${m.d}</p>
-        <div class="tags">${m.t.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <h3>${esc(m.n)}</h3>
+        <p>${esc(m.d)}</p>
+        <div class="tags">${m.t.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         <div class="row">
           <span class="price">${money(m.p)}</span>
           <button class="btn small" data-add="${m.id}">Agregar</button>
