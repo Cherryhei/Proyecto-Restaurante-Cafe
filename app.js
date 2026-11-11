@@ -88,14 +88,13 @@ $('#grid').addEventListener('click', e => {
 });
 
 /* LÓGICA Y RENDERIZADO DEL CARRITO */
+
 function calc() {
-  const sub = cart.reduce((s, i) => s + MENU.find(m => m.id === i.id).p * i.q, 0);
-  const disc = coupon ? sub * COUPONS[coupon] : 0;
-  const tax = (sub - disc) * TAX;
   const mode = ($('#fMode') || {}).value || 'retiro';
-  const ship = (mode === 'domicilio' && sub > 0 && step === 'checkout') ? DELIVERY : 0;
-  return { sub, disc, tax, ship, total: sub - disc + tax + ship };
+
+  return calcularTotales(cart, MENU, coupon, mode, step);
 }
+
 
 function renderCart() {
   $('#count').textContent = cart.reduce((s, i) => s + i.q, 0);
@@ -204,8 +203,7 @@ function renderCheckout() {
 $('#cartView').addEventListener('change', e => { if (e.target.id === 'fMode') renderCheckout(); });
 
 function setErr(id, t) { const e = document.querySelector(`[data-for="${id}"]`); if (e) e.textContent = t || ''; }
-const okPhone = s => /^[\d\s+-]{8,15}$/.test(s);
-const okMail = s => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
+
 
 $('#totalsBox').addEventListener('click', e => {
   if (e.target.id === 'back') { step = 'cart'; renderCart(); return; }
