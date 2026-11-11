@@ -811,3 +811,22 @@ footer { background: #241b16; color: #d0beaa; padding: 35px 0; }
   padding: 4px 10px;
   border-radius: 8px;
 }
+
+/* BOTÓN DE WHATSAPP */
+.btn.whatsapp {
+  background: #25d366;
+  color: #073b1c;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.btn.whatsapp:hover:not(:disabled) {
+  background: #3ee27c;
+}
+
+@media (max-width: 480px) {
+  .btn.whatsapp {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

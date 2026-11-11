@@ -1,369 +1,430 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Aroma & Leña: calidez en la taza, tradición en el plato. Explora nuestro menú de comida, café y postres.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Aroma & Leña: calidez en la taza, tradición en el plato. Explora nuestro menú de comida, café y postres."
+    />
 
-  <title>Aroma & Leña | Restaurante y Café</title>
+    <title>Aroma & Leña | Restaurante y Café</title>
 
-  <!-- Fuentes externas -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Fuentes externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Hoja de estilos -->
-  <link rel="stylesheet" href="styles.css">
-</head>
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
+    <!-- ENCABEZADO SUPERIOR -->
+    <header class="top">
+      <div class="wrap">
+        <a class="logo" href="#inicio">Aroma & Leña</a>
 
-  <!-- ENCABEZADO SUPERIOR -->
-  <header class="top">
-    <div class="wrap">
-      <a class="logo" href="#inicio">Aroma & Leña</a>
+        <nav aria-label="Navegación principal">
+          <a class="btn ghost small" href="#menu" style="text-decoration: none">
+            Menú
+          </a>
 
-      <nav aria-label="Navegación principal">
-        <a class="btn ghost small" href="#menu" style="text-decoration:none">
-          Menú
-        </a>
-
-        <a class="btn ghost small" href="#cuenta" style="text-decoration:none">
-          Mis datos
-        </a>
-        <button class="btn ghost small" id="openAuth" type="button">Ingresar</button>
-        <button class="btn small" id="openCart" type="button" aria-label="Abrir carrito">
-          Carrito <span class="badge" id="count">0</span>
-        </button>
-      </nav>
-    </div>
-  </header>
-
-  <!-- SECCIÓN DE BIENVENIDA -->
-  <section class="hero" id="inicio">
-    <div class="wrap hero-grid">
-
-      <!-- Información principal -->
-      <div class="hero-copy">
-        <h1>Calidez en la taza, Tradición en el plato.</h1>
-
-        <p>
-          Café de altura, especial para acompañar tu día.
-          Pídelo para llevar o disfrútalo en nuestro restaurante,
-          acompañado de un buen postre.
-        </p>
-
-        <a
-          href="#menu"
-          class="btn"
-          style="text-decoration:none;display:inline-block"
-        >
-          Ver el menú
-        </a>
-
-        <div class="info">
-          <span>Abierto de 11:00 a. m. a 8:00 p. m.</span>
-          <span>Av. Principal, Barrio El Chile, Chalatenango Sur</span>
-          <span>Pago en efectivo o tarjeta</span>
-        </div>
-      </div>
-
-      <!-- Fotografías del restaurante -->
-      <div class="hero-visual">
-
-        <div class="hero-circle">
-          <img
-            src="imagenes/plato-de-comida.jpg"
-            alt="Plato de comida de Aroma & Leña"
-            class="hero-food"
+          <a
+            class="btn ghost small"
+            href="#cuenta"
+            style="text-decoration: none"
           >
-        </div>
-
-        <div class="coffee-float">
-          <img
-            src="imagenes/café.jpg"
-            alt="Taza de café de Aroma & Leña"
-            class="hero-coffee"
+            Mis datos
+          </a>
+          <button class="btn ghost small" id="openAuth" type="button">
+            Ingresar
+          </button>
+          <button
+            class="btn small"
+            id="openCart"
+            type="button"
+            aria-label="Abrir carrito"
           >
-        </div>
-
+            Carrito <span class="badge" id="count">0</span>
+          </button>
+        </nav>
       </div>
-
-    </div>
-  </section>
-
-  <!-- SECCIÓN DEL MENÚ -->
-  <section id="menu">
-    <div class="wrap">
-      <h2>Menú</h2>
-
-      <div class="tools">
-        <input
-          id="q"
-          type="search"
-          placeholder="Buscar platillo"
-          aria-label="Buscar platillo"
-        >
-
-        <div class="chips" id="chips"></div>
-      </div>
-
-      <!-- Productos generados mediante JavaScript -->
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
-
-  <!-- DATOS DEL CLIENTE E HISTORIAL -->
-  <section id="cuenta" style="padding-top:0">
-    <div class="wrap">
-      <h2>Mis datos y pedidos</h2>
-
-      <div class="panel">
-
-        <p style="margin-top:0;color:var(--muted)">
-          Guarda tus datos en este dispositivo para pedir más rápido.
-          Se utilizan únicamente para gestionar tus pedidos.
-        </p>
-
-        <form id="profile" novalidate>
-
-          <div class="two">
-
-            <div class="f">
-              <label for="pName">Nombre completo</label>
-              <input id="pName" autocomplete="name">
-              <span class="err-t" data-for="pName"></span>
-            </div>
-
-            <div class="f">
-              <label for="pPhone">Teléfono</label>
-              <input
-                id="pPhone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="7000-0000"
-              >
-              <span class="err-t" data-for="pPhone"></span>
-            </div>
-
-          </div>
-
-          <div class="f">
-            <label for="pEmail">Correo electrónico</label>
-            <input
-              id="pEmail"
-              type="email"
-              autocomplete="email"
-            >
-            <span class="err-t" data-for="pEmail"></span>
-          </div>
-
-          <div class="f">
-            <label for="pAddr">Dirección de entrega</label>
-            <textarea
-              id="pAddr"
-              rows="2"
-              autocomplete="street-address"
-            ></textarea>
-          </div>
-
-          <label class="f check">
-            <input type="checkbox" id="pConsent">
-            <span>
-              Acepto que Aroma & Leña guarde mis datos
-              en este dispositivo para gestionar mis pedidos.
-            </span>
-          </label>
-
-          <span class="err-t" data-for="pConsent"></span>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="btn" type="submit">
-              Guardar mis datos
-            </button>
-
-            <button
-              class="btn ghost"
-              type="button"
-              id="wipe"
-              style="color:var(--ink)"
-            >
-              Borrar mis datos
-            </button>
-          </div>
-
-          <p class="msg" id="pMsg" role="status"></p>
-
-        </form>
-
-        <!-- Historial de pedidos -->
-        <h3 style="margin-top:20px">Historial de pedidos</h3>
-        <div class="orders" id="orders"></div>
-
-      </div>
-    </div>
-  </section>
-
-<!-- MODAL DE LOGIN / REGISTRO -->
-<div class="auth-modal" id="authModal" aria-hidden="true">
-  <div class="auth-box">
-    <button class="auth-close" id="closeAuth" type="button">×</button>
-    
-    <!-- Pestañas Login / Registro -->
-    <div class="auth-tabs">
-      <button class="auth-tab active" id="tabLogin" type="button">Iniciar Sesión</button>
-      <button class="auth-tab" id="tabRegister" type="button">Registrarse</button>
-    </div>
-
-    <!-- FORMULARIO DE LOGIN -->
-    <form id="formLogin">
-      <div class="f">
-        <label for="lRole">Tipo de cuenta</label>
-        <select id="lRole">
-          <option value="cliente">Cliente</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
-      <div class="f">
-        <label for="lEmail">Correo electrónico</label>
-        <input id="lEmail" type="email" placeholder="correo@ejemplo.com" required>
-      </div>
-      <div class="f">
-        <label for="lPass">Contraseña</label>
-        <input id="lPass" type="password" placeholder="••••••••" required>
-      </div>
-      <button class="btn" type="submit" style="width:100%; margin-top:10px">Ingresar</button>
-    </form>
-
-    <!-- FORMULARIO DE REGISTRO -->
-    <form id="formRegister" style="display:none">
-      <div class="f">
-        <label for="rName">Nombre completo</label>
-        <input id="rName" type="text" placeholder= required>
-      </div>
-      <div class="f">
-        <label for="rRole">Registrarse como</label>
-        <select id="rRole">
-          <option value="cliente">Cliente</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
-      <div class="f">
-        <label for="rEmail">Correo electrónico</label>
-        <input id="rEmail" type="email" placeholder="correo@ejemplo.com" required>
-      </div>
-      <div class="f">
-        <label for="rPass">Contraseña</label>
-        <input id="rPass" type="password" placeholder="••••••••" required>
-      </div>
-      <button class="btn" type="submit" style="width:100%; margin-top:10px">Crear cuenta</button>
-    </form>
-  </div>
-</div>
-
-<!-- SECCIÓN PANEL DE ADMINISTRADOR (Para agregar productos) -->
-<section id="adminSection" style="display:none; background: var(--surface); border-top: 2px dashed var(--gold);">
-  <div class="wrap">
-    <h2>Panel de Administrador — Agregar Producto</h2>
-    <div class="panel">
-      <form id="formAddDish">
-        <div class="two">
-          <div class="f">
-            <label for="adminName">Nombre del platillo</label>
-            <input id="adminName" placeholder="Ej. Mariscada especial" required>
-          </div>
-          <div class="f">
-            <label for="adminCat">Categoría</label>
-            <select id="adminCat">
-              <option value="Entradas">Entradas</option>
-              <option value="Platos fuertes">Platos fuertes</option>
-              <option value="Bebidas">Bebidas</option>
-              <option value="Postres">Postres</option>
-              <option value="Combos">Combos</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="two">
-          <div class="f">
-            <label for="adminPrice">Precio ($)</label>
-            <input id="adminPrice" type="number" step="0.01" placeholder="9.99" required>
-          </div>
-          <div class="f">
-            <label for="adminImg">Nombre de archivo de imagen</label>
-            <input id="adminImg" placeholder="imagenes/mariscada.jpg" required>
-          </div>
-        </div>
-
-        <div class="f">
-          <label for="adminDesc">Descripción</label>
-          <textarea id="adminDesc" rows="2" placeholder="Ingredientes y detalles..." required></textarea>
-        </div>
-
-        <div class="f">
-          <label for="adminTag">Etiqueta opcional</label>
-          <select id="adminTag">
-            <option value="">Ninguna</option>
-            <option value="popular">Popular</option>
-            <option value="vegetariano">Vegetariano</option>
-            <option value="picante">Picante</option>
-          </select>
-        </div>
-
-        <button class="btn" type="submit">Guardar y publicar platillo</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-  <!-- PIE DE PÁGINA -->
-  <footer>
-    <div class="wrap">
-      Aroma & Leña es un restaurante ficticio creado
-      con fines académicos. Los pedidos y pagos son simulados.
-    </div>
-  </footer>
-
-  <!-- FONDO OSCURO DEL CARRITO -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- CARRITO LATERAL -->
-  <aside
-    class="drawer"
-    id="drawer"
-    aria-label="Carrito de compras"
-    aria-hidden="true"
-  >
-
-    <header>
-      <h2 id="dTitle">Tu pedido</h2>
-
-      <button
-        class="btn ghost small"
-        id="closeCart"
-        type="button"
-        style="color:var(--ink)"
-      >
-        Cerrar
-      </button>
     </header>
 
-    <!-- Productos agregados -->
-    <div class="content" id="cartView"></div>
+    <!-- SECCIÓN DE BIENVENIDA -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <!-- Información principal -->
+        <div class="hero-copy">
+          <h1>Calidez en la taza, Tradición en el plato.</h1>
 
-    <!-- Subtotal, descuentos y total -->
-    <div class="totals" id="totalsBox"></div>
+          <p>
+            Café de altura, especial para acompañar tu día. Pídelo para llevar o
+            disfrútalo en nuestro restaurante, acompañado de un buen postre.
+          </p>
 
-  </aside>
+          <a
+            href="#menu"
+            class="btn"
+            style="text-decoration: none; display: inline-block"
+          >
+            Ver el menú
+          </a>
 
-  <!-- NOTIFICACIONES -->
-  <div class="toast" id="toast" role="status"></div>
+          <a
+            href="https://wa.me/50368660218?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Aroma%20%26%20Le%C3%B1a"
+            class="btn whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Escríbenos por WhatsApp
+          </a>
 
-  <!-- JAVASCRIPT -->
-   <script src="logica.js"></script>
-  <script src="app.js"></script>
+          <div class="info">
+            <span>Abierto de 11:00 a. m. a 8:00 p. m.</span>
+            <span>Av. Principal, Barrio El Chile, Chalatenango Sur</span>
+            <span>Pago en efectivo</span>
+          </div>
+        </div>
 
-</body>
+        <!-- Fotografías del restaurante -->
+        <div class="hero-visual">
+          <div class="hero-circle">
+            <img
+              src="imagenes/plato-de-comida.jpg"
+              alt="Plato de comida de Aroma & Leña"
+              class="hero-food"
+            />
+          </div>
+
+          <div class="coffee-float">
+            <img
+              src="imagenes/café.jpg"
+              alt="Taza de café de Aroma & Leña"
+              class="hero-coffee"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DEL MENÚ -->
+    <section id="menu">
+      <div class="wrap">
+        <h2>Menú</h2>
+
+        <div class="tools">
+          <input
+            id="q"
+            type="search"
+            placeholder="Buscar platillo"
+            aria-label="Buscar platillo"
+          />
+
+          <div class="chips" id="chips"></div>
+        </div>
+
+        <!-- Productos generados mediante JavaScript -->
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <!-- DATOS DEL CLIENTE E HISTORIAL -->
+    <section id="cuenta" style="padding-top: 0">
+      <div class="wrap">
+        <h2>Mis datos y pedidos</h2>
+
+        <div class="panel">
+          <p style="margin-top: 0; color: var(--muted)">
+            Guarda tus datos en este dispositivo para pedir más rápido. Se
+            utilizan únicamente para gestionar tus pedidos.
+          </p>
+
+          <form id="profile" novalidate>
+            <div class="two">
+              <div class="f">
+                <label for="pName">Nombre completo</label>
+                <input id="pName" autocomplete="name" />
+                <span class="err-t" data-for="pName"></span>
+              </div>
+
+              <div class="f">
+                <label for="pPhone">Teléfono</label>
+                <input
+                  id="pPhone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="7000-0000"
+                />
+                <span class="err-t" data-for="pPhone"></span>
+              </div>
+            </div>
+
+            <div class="f">
+              <label for="pEmail">Correo electrónico</label>
+              <input id="pEmail" type="email" autocomplete="email" />
+              <span class="err-t" data-for="pEmail"></span>
+            </div>
+
+            <div class="f">
+              <label for="pAddr">Dirección de entrega</label>
+              <textarea
+                id="pAddr"
+                rows="2"
+                autocomplete="street-address"
+              ></textarea>
+            </div>
+
+            <label class="f check">
+              <input type="checkbox" id="pConsent" />
+              <span>
+                Acepto que Aroma & Leña guarde mis datos en este dispositivo
+                para gestionar mis pedidos.
+              </span>
+            </label>
+
+            <span class="err-t" data-for="pConsent"></span>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap">
+              <button class="btn" type="submit">Guardar mis datos</button>
+
+              <button
+                class="btn ghost"
+                type="button"
+                id="wipe"
+                style="color: var(--ink)"
+              >
+                Borrar mis datos
+              </button>
+            </div>
+
+            <p class="msg" id="pMsg" role="status"></p>
+          </form>
+
+          <!-- Historial de pedidos -->
+          <h3 style="margin-top: 20px">Historial de pedidos</h3>
+          <div class="orders" id="orders"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL DE LOGIN / REGISTRO -->
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+      <div class="auth-box">
+        <button class="auth-close" id="closeAuth" type="button">×</button>
+
+        <!-- Pestañas Login / Registro -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabLogin" type="button">
+            Iniciar Sesión
+          </button>
+          <button class="auth-tab" id="tabRegister" type="button">
+            Registrarse
+          </button>
+        </div>
+
+        <!-- FORMULARIO DE LOGIN -->
+        <form id="formLogin">
+          <div class="f">
+            <label for="lRole">Tipo de cuenta</label>
+            <select id="lRole">
+              <option value="cliente">Cliente</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="f">
+            <label for="lEmail">Correo electrónico</label>
+            <input
+              id="lEmail"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
+          <div class="f">
+            <label for="lPass">Contraseña</label>
+            <input id="lPass" type="password" placeholder="••••••••" required />
+          </div>
+          <button
+            class="btn"
+            type="submit"
+            style="width: 100%; margin-top: 10px"
+          >
+            Ingresar
+          </button>
+        </form>
+
+        <!-- FORMULARIO DE REGISTRO -->
+        <form id="formRegister" style="display: none">
+          <div class="f">
+            <label for="rName">Nombre completo</label>
+            <input id="rName" type="text" placeholder="required" />
+          </div>
+          <div class="f">
+            <label for="rRole">Registrarse como</label>
+            <select id="rRole">
+              <option value="cliente">Cliente</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="f">
+            <label for="rEmail">Correo electrónico</label>
+            <input
+              id="rEmail"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
+          <div class="f">
+            <label for="rPass">Contraseña</label>
+            <input id="rPass" type="password" placeholder="••••••••" required />
+          </div>
+          <button
+            class="btn"
+            type="submit"
+            style="width: 100%; margin-top: 10px"
+          >
+            Crear cuenta
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SECCIÓN PANEL DE ADMINISTRADOR (Para agregar productos) -->
+    <section
+      id="adminSection"
+      style="
+        display: none;
+        background: var(--surface);
+        border-top: 2px dashed var(--gold);
+      "
+    >
+      <div class="wrap">
+        <h2>Panel de Administrador — Agregar Producto</h2>
+        <div class="panel">
+          <form id="formAddDish">
+            <div class="two">
+              <div class="f">
+                <label for="adminName">Nombre del platillo</label>
+                <input
+                  id="adminName"
+                  placeholder="Ej. Mariscada especial"
+                  required
+                />
+              </div>
+              <div class="f">
+                <label for="adminCat">Categoría</label>
+                <select id="adminCat">
+                  <option value="Entradas">Entradas</option>
+                  <option value="Platos fuertes">Platos fuertes</option>
+                  <option value="Bebidas">Bebidas</option>
+                  <option value="Postres">Postres</option>
+                  <option value="Combos">Combos</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="two">
+              <div class="f">
+                <label for="adminPrice">Precio ($)</label>
+                <input
+                  id="adminPrice"
+                  type="number"
+                  step="0.01"
+                  placeholder="9.99"
+                  required
+                />
+              </div>
+              <div class="f">
+                <label for="adminImg">Nombre de archivo de imagen</label>
+                <input
+                  id="adminImg"
+                  placeholder="imagenes/mariscada.jpg"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="f">
+              <label for="adminDesc">Descripción</label>
+              <textarea
+                id="adminDesc"
+                rows="2"
+                placeholder="Ingredientes y detalles..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="f">
+              <label for="adminTag">Etiqueta opcional</label>
+              <select id="adminTag">
+                <option value="">Ninguna</option>
+                <option value="popular">Popular</option>
+                <option value="vegetariano">Vegetariano</option>
+                <option value="picante">Picante</option>
+              </select>
+            </div>
+
+            <button class="btn" type="submit">
+              Guardar y publicar platillo
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+      <div class="wrap">
+        Aroma & Leña es un restaurante ficticio. Los pedidos y pagos son
+        simulados.
+      </div>
+    </footer>
+
+    <!-- FONDO OSCURO DEL CARRITO -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- CARRITO LATERAL -->
+    <aside
+      class="drawer"
+      id="drawer"
+      aria-label="Carrito de compras"
+      aria-hidden="true"
+    >
+      <header>
+        <h2 id="dTitle">Tu pedido</h2>
+
+        <button
+          class="btn ghost small"
+          id="closeCart"
+          type="button"
+          style="color: var(--ink)"
+        >
+          Cerrar
+        </button>
+      </header>
+
+      <!-- Productos agregados -->
+      <div class="content" id="cartView"></div>
+
+      <!-- Subtotal, descuentos y total -->
+      <div class="totals" id="totalsBox"></div>
+    </aside>
+
+    <!-- NOTIFICACIONES -->
+    <div class="toast" id="toast" role="status"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="logica.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
